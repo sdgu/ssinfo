@@ -6,11 +6,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongo = require("mongodb");
-var monk = require("monk");
-var db = monk("localhost:27017/ssinfo");
+// var monk = require("monk");
+// var db = monk("localhost:27017/ssinfo");
+
+var mongoose = require("mongoose");
+//var db = "mongodb://localhost:27017/ssinfo";
+//var db = 
+mongoose.connect("mongodb://localhost:27017/ssinfo");
+var db = mongoose.connection;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
 
 var app = express();
 
@@ -65,6 +72,34 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+// var testschema = mongoose.Schema(
+// {
+//   author:
+//   {
+//     username: String,
+//     pin: String
+//   }
+// });
+
+// var Test = mongoose.model("Test", testschema, "ocapTest");
+
+
+
+// var test1 = new Test(
+// {
+//   author:
+//   {
+//     username: "potato",
+//     pin: "1234"
+//   }
+// });
+
+// test1.save(function(err)
+// {
+//   if (err) throw err;
+//   console.log("good");
+// })
 
 
 module.exports = app;

@@ -6,7 +6,12 @@
 	},
 	submission:
 	{
-		typing: "Fairy / Water",
+		description: "Like the general direction of this mon and stuff",
+		typing:
+		{
+			primary: "Fairy",
+			secondary: "Water"
+		},
 		abilities:
 		{
 			primary: "ability 1",

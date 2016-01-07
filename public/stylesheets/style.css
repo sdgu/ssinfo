@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+					/* select(name="typing")
+					// 	option(value="prim", selected="selected") 1st Type
+					// 	option(value="Fairy") Fairy
+					// 	option(value="Water") Water
+					// br
+					// select(name="typing2")
+					// 	option(value="sec") 2nd Type
+					// 	option(value="Water") Water */
