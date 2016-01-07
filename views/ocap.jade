@@ -1,6 +1,13 @@
 extends layout
 
+
+
 block content
+
+	script.
+		function fetch()
+			alert("pasta")
+
 	h1= title
 	p Welcome to a nonsuck CAP
 	ul
@@ -24,9 +31,11 @@ block content
 
 	div.column#rightcol
 		h3 Update
-		select
-			each auth, i in ocap
-				option= auth.submission.name
+		//- select
+		//- 	each auth, i in ocap
+		//- 		option= auth.submission.name
+		input#inputWhichMon(type="text" placeholde="Mon to update" name="whichmon")
+		button#fetchMon(type="submit" onclick="fetch()") Fetch
 		form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
 			p Username
 			input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
