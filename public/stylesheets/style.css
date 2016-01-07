@@ -1,16 +1,50 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html
+{
+	background: #f2f2f2;
 }
 
-a {
+body 
+{
+  padding: 50px;
+  font: 14px;
+  font-family: "Ubuntu";
+}
+
+a 
+{
   color: #00B7FF;
 }
-					/* select(name="typing")
-					// 	option(value="prim", selected="selected") 1st Type
-					// 	option(value="Fairy") Fairy
-					// 	option(value="Water") Water
-					// br
-					// select(name="typing2")
-					// 	option(value="sec") 2nd Type
-					// 	option(value="Water") Water */
+
+
+#wrapper
+{
+	margin: -20px 75px -10px;
+	padding: 5px 20px 15px;
+	box-shadow: 0px 0px 7px #999;
+	background: #fff none repeat scroll 0% 0%;
+	position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* select(name="typing")
+// 	option(value="prim", selected="selected") 1st Type
+// 	option(value="Fairy") Fairy
+// 	option(value="Water") Water
+// br
+// select(name="typing2")
+// 	option(value="sec") 2nd Type
+// 	option(value="Water") Water */
