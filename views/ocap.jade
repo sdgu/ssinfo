@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to a nonsuck CAP
+	ul
+		each auth, i in ocap
+			li
+				p= auth.author.username
+	h3= "Add new" 
+	form#formAddUser(name="adduser",method="post",action="/adduser")
+		input#inputUserName(type="text", placeholder="username", name="username")
+		br
+		input#inputUserEmail(type="text", placeholder="useremail", name="useremail")
+		br
+		button#btnSubmit(type="submit") Submit
