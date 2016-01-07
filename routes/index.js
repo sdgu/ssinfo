@@ -9,11 +9,10 @@ router.get('/', function(req, res, next) {
 router.get("/ocap", function(req, res)
 {
 	var db = req.db;
-	var collection = db.collection("ocap");
+	var collection = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 	collection.find({},{}, function(e, docs)
 	{
-		console.log(docs);
-		res.render("ocap", {//"title": "OCAP", 
+		res.render('ocap', {"title": "OCAP", 
 			"ocap": docs});
 	});
 	
@@ -58,6 +57,7 @@ var ocapmonSchema = mongoose.Schema(
 	}
 });
 
+//collection is the last one
 ocapmon = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 
 router.post("/submitpoke", function(req, res)
@@ -65,17 +65,22 @@ router.post("/submitpoke", function(req, res)
 	
 	mongoose.connection = req.db;
 
-	var userName = req.body.username;
-	var pin = req.body.pin;
-	var desc = req.body.desc;
-	var moves = req.body.movepool.split(", ");
+	var usernameIn = req.body.username;
+	var pinIn = req.body.pin;
+	var descIn = req.body.desc;
+	var movesIn = req.body.movepool.split(", ");
 
 	var newMon = new ocapmon(
 	{
+		author:
+		{
+			username: usernameIn,
+			pin: pinIn
+		},
 		submission:
 		{
-			description: desc,
-			movepool: moves
+			description: descIn,
+			movepool: movesIn
 		}
 	});
 
