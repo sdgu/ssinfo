@@ -54,7 +54,28 @@ table td:last-child
 	border-right: none;
 }
 
+#leftcol
+{
 
+}
+
+#rightcol
+{
+	position: absolute;
+	margin-left: 300px;
+	border-left: 1px solid black;
+}
+.column
+{
+	float: left;
+	padding: 0px 0px 0px 18px;
+
+}
+
+#nothing
+{
+	visibility: hidden;
+}
 
 
 

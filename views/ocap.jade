@@ -7,36 +7,65 @@ block content
 		each auth, i in ocap
 			li
 				p= auth.author.username
+
+	div.column#leftcol
+		h3 Add new
+		select#nothing
+			option
+		form#formSubmitMon(name="submitpoke", method="post", action="/submitpoke")
+			p Username
+			input#inputUserName(type="text", placeholder="Your username", name="username")
+			p Pin
+			input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
+			p Description
+			textarea#description(name="desc" rows="10" cols="30")
+
+
+
+	div.column#rightcol
+		h3 Update
+		select
+			each auth, i in ocap
+				option= auth.submission.name
+		form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
+			p Username
+			input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
+			p Pin
+			input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
+			p Description
+			textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
+
 	table
 		tr
 			td
-				h3= "Add new" 
-			td
-				h3= "Update"
-		tr
-			td
-				form#formSubmitMon(name="submitpoke", method="post", action="/submitpoke")
-					p Username
-					input#inputUserName(type="text", placeholder="Your username", name="username")
-			td
-				form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
-					p Username
-					input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
-		tr
-			td
-				p Pin
-				input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
-			td
-				p Pin
-				input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
-		tr
-			td
 				p Description
-				textarea#description(name="desc" rows="10" cols="30")
+				textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
+				
 			td
 				p Description
 				textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
+				
 		tr
+			td
+			td
+				
+		tr
+			td
+				
+			td
+				
+		tr
+			td
+				
+			td
+				
+		tr
+			td
+				
+			td
+				
+		tr
+			td
 				p Primay Typing
 				input#Fairy1(type="radio", name="typing1")
 				label(for="Fairy1") Fairy
