@@ -28,6 +28,11 @@
 			Spe: 100
 		},
 		movepool: ["move1", "move2"],
+		family:
+		{
+			prevo: "applemon",
+			evo: "pearmon"
+		},
 		flavor: "oc backstory",
 		name: "Pastamon"
 	}
