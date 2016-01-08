@@ -62,7 +62,7 @@ router.get('/', function(req, res, next) {
 
 var updatedusername;
 
-var err = "";
+var err;
 
 
 
@@ -74,13 +74,14 @@ router.get("/ocap", function(req, res)
 	{
 		//console.log(docs[0]);
 		res.render('ocap', 
-			{
-				"ocap": docs,
-				"updatedusername": updatedusername,
-				"err" : err,
-				"reusername" : reusername
+		{
+			"ocap": docs,
+			"updatedusername": updatedusername,
+			"err" : err,
+			"reusername" : reusername,
+			"repin": repin
+		});
 
-			});
 	});
 	//console.log(err);
 	
@@ -127,12 +128,15 @@ router.post("/checkmonname", function(req, res)
 
 
 var reusername;
+var repin;
 
 
 
 
 router.post("/submitpoke", function(req, res)
 {
+	//if (reusername != "") reusername = "";
+
 	var collection = ocapmon;
 
 	mongoose.connection = req.db;
@@ -210,10 +214,19 @@ router.post("/submitpoke", function(req, res)
 	newMon.save(function(e)
 	{
 		console.log("Error: " + e);
-		if (err != null)
+		if (e != null)
 		{
+			console.log("error was not null");
 			reusername = usernameIn;
+			repin = pinIn;
 			err = e;
+		}
+		else
+		{
+			console.log("submitted poke");
+			reusername = "";
+			repin = "";
+			err = null;
 		}
 		// ocapmon.find({"author.username":"Lemonade"}, "author submission", function(err, result)
 		// {
