@@ -2,19 +2,22 @@ extends layout
 
 block content
 	script.
-		//alert("test" + "#{updatedusername}")
-		window.onload = function()
-			alert("#{err}")
+		window.onload = function test()
+		{
+			if ("#{err}" != "")
+				alert("#{err}");
 			document.getElementById("inputUserNameUpdate").value = "#{updatedusername}"
 
+			document.getElementById("inputUserName").value = "#{reusername}"
+		}
+
 	h1 OCAP
-	p= err
 	p Welcome to a nonsuck CAP
 	ul
 		//- each auth, i in ocap.reverse()
 		//-  	li
 		//-  		p= auth.author.username
-		- for (var i = 1; i < 2; i++)
+		- for (var i = 1; i < 3; i++)
 			li
 				p= ocap[i-1].author.username
 				
@@ -27,15 +30,14 @@ block content
 					form#pasta
 						input#pasta2(type="text" placeholde="Mon to update" name="whichmon")
 						button#pasta3(type="submit") Fetch
+
 					form#formSubmitMon(name="submitpoke", method="post", action="/submitpoke")
-						p Username
+						p Username / Author
 						input#inputUserName(type="text", placeholder="Your username", name="username")
 						p Pin
 						input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
-					form#checkMonName(name="checkmonname" method="post" action="/checkmonname")
 						p Mon Name
 						input#inputName(type="text" placeholder="name" name="name")
-						button#check(type="submit") Check
 						p Description
 						textarea#description(name="desc" rows="10" cols="30")
 						p Primay Typing
@@ -43,6 +45,9 @@ block content
 						label(for="Fairy1") Fairy
 						input#Water1(type="radio", name="typing1")
 						label(for="Water1") Water
+						p Secondary Typing
+						input#Fairy2(type="radio", name="typing2")
+						label(for="Fairy2") Fairy
 						p Abilities
 						input#inputAbility1(type="text", placeholder="Ability 1", name="ab1")
 						br
@@ -90,9 +95,15 @@ block content
 						input#upName(type="text" placeholder="update name" name="upname")
 						p Description
 						textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
+						p Primay Typing
+						input#Fairy1-1(type="radio", name="typing1-1")
+						label(for="Fairy1-1") Fairy
+						input#Water1-1(type="radio", name="typing1-1")
+						label(for="Water1-1") Water
+						//-deal with this later
 						p Secondary Typing
-						input#Fairy2(type="radio", name="typing2")
-						label(for="Fairy2") Fairy
+						input#Fairy2-1(type="radio", name="typing2-1")
+						label(for="Fairy2-1") Fairy
 						p Abilities
 						input#updateAbility1(type="text", placeholder="Ability 1", name="upab1")
 						br

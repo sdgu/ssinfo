@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
 
 var mongoose = require("mongoose");
 var uniqueVal = require("mongoose-unique-validator");
@@ -50,7 +51,7 @@ var ocapmonSchema = mongoose.Schema(
 ocapmon = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 
 
-var app = express();
+
 
 
 /* GET home page. */
@@ -61,7 +62,7 @@ router.get('/', function(req, res, next) {
 
 var updatedusername;
 
-var err;
+var err = "";
 
 
 
@@ -74,12 +75,14 @@ router.get("/ocap", function(req, res)
 		//console.log(docs[0]);
 		res.render('ocap', 
 			{
-
 				"ocap": docs,
 				"updatedusername": updatedusername,
-				"err" : err
+				"err" : err,
+				"reusername" : reusername
+
 			});
 	});
+	//console.log(err);
 	
 });
 
@@ -92,7 +95,7 @@ router.post("/fetchmon", function(req, res)
 
 	collection.find({"author.username": name},{}, function(e, docs)
 	{
-		console.log(docs),
+		//console.log(docs),
 		//will always be 0 because will prevent adding same named poke
 		updatedusername = docs[0].author.username
 	});
@@ -107,9 +110,10 @@ router.post("/checkmonname", function(req, res)
 
 	var name = req.body.name;
 
+	if (err != "") err = "";
+
 	collection.find({"submission.name": name},{}, function(e, docs)
 	{
-		console.log(docs)
 		if (docs.length > 0)
 		{
 			err = "Mon name already exists.";
@@ -120,19 +124,41 @@ router.post("/checkmonname", function(req, res)
 
 });
 
+
+
+var reusername;
+
+
+
+
 router.post("/submitpoke", function(req, res)
 {
 	var collection = ocapmon;
 
 	mongoose.connection = req.db;
 
-	var pokenameIn = req.body.name
+	var bod = req.body;
 
-	var usernameIn = req.body.username;
-	var pinIn = req.body.pin;
-	var descIn = req.body.desc;
-
-	var movesIn = req.body.movepool;
+	var usernameIn = bod.username;
+	var pinIn = bod.pin;
+	var pokenameIn = bod.name;
+	var descIn = bod.desc;
+	var primTypeIn = bod.typing1;
+		console.log(primTypeIn);
+	var secdTypeIn = bod.typing2;
+	var ab1In = bod.ab1;
+	var ab2In = bod.ab2;
+	var ab3In = bod.ab3;
+	var HPIn = bod.HP;
+	var AtkIn = bod.Atk;
+	var DefIn = bod.Def;
+	var SpAIn = bod.SpA;
+	var SpDIn = bod.SpD;
+	var SpeIn = bod.Spe;
+	var movesIn = bod.movepool;
+	var prevoIn = bod.prevo;
+	var evoIn = bod.evo;
+	var flavorIn = bod.flavor;
 
 
 	// if (movesIn.contains(","))
@@ -150,15 +176,45 @@ router.post("/submitpoke", function(req, res)
 		submission:
 		{
 			description: descIn,
+			typing:
+			{
+				primary: primTypeIn,
+				secondary: secdTypeIn
+			},
+			abilities:
+			{
+				primary: ab1In,
+				secondary: ab2In,
+				tertiary: ab3In
+			},
+			stats:
+			{
+				HP: HPIn,
+				Atk: AtkIn,
+				Def: DefIn,
+				SpA: SpAIn,
+				SpD: SpDIn,
+				Spe: SpeIn
+			},
 			movepool: movesIn,
+			family:
+			{
+				prevo: prevoIn,
+				evo: evoIn
+			},
+			flavor: flavorIn,
 			name: pokenameIn
 		}
 	});
 
-	newMon.save(function(err)
+	newMon.save(function(e)
 	{
-
-		console.log(err);
+		console.log("Error: " + e);
+		if (err != null)
+		{
+			reusername = usernameIn;
+			err = e;
+		}
 		// ocapmon.find({"author.username":"Lemonade"}, "author submission", function(err, result)
 		// {
 		// 	if (err) throw err;
