@@ -10,6 +10,7 @@ block content
 
 			document.getElementById("inputUserName").value = "#{reusername}";
 			document.getElementById("inputPin").value = "#{repin}";
+			//skipping poke name because that's the only thing that fails
 		}
 
 	h1 OCAP
@@ -18,10 +19,12 @@ block content
 		//- each auth, i in ocap.reverse()
 		//-  	li
 		//-  		p= auth.author.username
-		- for (var i = ocap.length-5; i < ocap.length; i++)
+		- for (var i = last5users.length-5; i < last5users.length; i++)
 			li
-				p= ocap[i].author.username
+				p= last5users[i].author.username
 				
+
+
 	
 	table
 		tr
@@ -33,22 +36,29 @@ block content
 						button#pasta3(type="submit") Fetch
 
 					form#formSubmitMon(name="submitpoke", method="post", action="/submitpoke")
+
 						p Username / Author
 						input#inputUserName(type="text", placeholder="Your username", name="username")
+
 						p Pin
 						input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
+
 						p Mon Name
 						input#inputName(type="text" placeholder="name" name="name")
+
 						p Description
 						textarea#description(name="desc" rows="10" cols="30")
+
 						p Primay Typing
-						input#Fairy1(type="radio", name="typing1")
-						label(for="Fairy1") Fairy
-						input#Water1(type="radio", name="typing1")
-						label(for="Water1") Water
+						select(name="primtypingin")
+							option#Fairy1.Fairy(value="Fairy" name="Fairy1") Fairy
+							option#Water1.Water(value="Water" name="Water1") Water
+
 						p Secondary Typing
-						input#Fairy2(type="radio", name="typing2")
-						label(for="Fairy2") Fairy
+						select(name="sectypingin")
+							option#Fairy2.Fairy(value="Fairy" name="Fairy2") Fairy
+							option#Water2.Water(value="Water" name="Water2") Water
+
 						p Abilities
 						input#inputAbility1(type="text", placeholder="Ability 1", name="ab1")
 						br

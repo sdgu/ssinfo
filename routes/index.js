@@ -9,7 +9,7 @@ var ocapmonSchema = mongoose.Schema(
 {
 	author:
 	{
-		username: {type: String, unique: true},
+		username: String,
 		pin: String
 	},
 	submission:
@@ -75,11 +75,14 @@ router.get("/ocap", function(req, res)
 		//console.log(docs[0]);
 		res.render('ocap', 
 		{
-			"ocap": docs,
+			"title": "OCAP",
+			"last5users": docs,
 			"updatedusername": updatedusername,
 			"err" : err,
+
 			"reusername" : reusername,
-			"repin": repin
+			"repin" : repin,
+			"remonname" : remonname
 		});
 
 	});
@@ -129,6 +132,7 @@ router.post("/checkmonname", function(req, res)
 
 var reusername;
 var repin;
+var remonname;
 
 
 
@@ -143,13 +147,16 @@ router.post("/submitpoke", function(req, res)
 
 	var bod = req.body;
 
+
 	var usernameIn = bod.username;
 	var pinIn = bod.pin;
 	var pokenameIn = bod.name;
 	var descIn = bod.desc;
-	var primTypeIn = bod.typing1;
-		console.log(primTypeIn);
-	var secdTypeIn = bod.typing2;
+	var primTypeIn = bod.primtypingin;
+
+	var secdTypeIn = bod.sectypingin;
+		console.log("typing: " + primTypeIn + " / " + secdTypeIn);
+
 	var ab1In = bod.ab1;
 	var ab2In = bod.ab2;
 	var ab3In = bod.ab3;
@@ -219,6 +226,7 @@ router.post("/submitpoke", function(req, res)
 			console.log("error was not null");
 			reusername = usernameIn;
 			repin = pinIn;
+			remonname = pokenameIn;
 			err = e;
 		}
 		else
@@ -226,6 +234,7 @@ router.post("/submitpoke", function(req, res)
 			console.log("submitted poke");
 			reusername = "";
 			repin = "";
+			remonname = "";
 			err = null;
 		}
 		// ocapmon.find({"author.username":"Lemonade"}, "author submission", function(err, result)
