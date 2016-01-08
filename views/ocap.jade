@@ -6,7 +6,8 @@ block content
 		{
 			if ("#{err}" != "")
 				alert("#{err}");
-			document.getElementById("inputUserNameUpdate").value = "#{updatedusername}";
+
+
 
 			document.getElementById("inputUserName").value = "#{reusername}";
 			document.getElementById("inputPin").value = "#{repin}";
@@ -52,6 +53,13 @@ block content
 			document.getElementById("inputPrevo").value = "#{reprevo}";
 			document.getElementById("inputEvo").value = "#{reevo}";
 			document.getElementById("flavor").value = "#{reflavor}";
+
+
+			//fetching stuff here
+			document.getElementById("inputUserNameUpdate").value = "#{fetchedusername}";
+			document.getElementById("upName").value = "#{fetchedMonName}";
+			document.getElementById("descriptionUpdate").value = "#{fetchedDesc}";
+			//do typing 
 
 		}
 
@@ -143,7 +151,7 @@ block content
 					form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
 						p Username
 						input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
-						p Pin
+						p Enter Pin
 						input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
 						p Update Mon Name
 						input#upName(type="text" placeholder="update name" name="upname")

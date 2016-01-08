@@ -60,7 +60,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-var updatedusername;
+
 
 var err;
 
@@ -77,7 +77,7 @@ router.get("/ocap", function(req, res)
 		{
 			"title": "OCAP",
 			"last5users": docs,
-			"updatedusername": updatedusername,
+
 			"err" : err,
 
 			"reusername" : reusername,
@@ -98,7 +98,28 @@ router.get("/ocap", function(req, res)
 			"removepool" : removepool,
 			"reprevo" : reprevo,
 			"reevo" : reevo,
-			"reflavor" : reflavor
+			"reflavor" : reflavor,
+
+
+			"fetchedusername" : fetchedusername,
+			"fetchedMonName" : fetchedMonName,
+			"fetchedDesc" : fetchedDesc,
+			"fetchedPrim" : fetchedPrim,
+			"fetchedSec" : fetchedSec,
+			"fetchedAb1" : fetchedAb1,
+			"fetchedAb2" : fetchedAb2,
+			"fetchedAb3" : fetchedAb3,
+			"fetchedHP" : fetchedHP,
+			"fetchedAtk" : fetchedAtk,
+			"fetchedDef" : fetchedDef,
+			"fetchedSpA" : fetchedSpA,
+			"fetchedSpD" : fetchedSpD,
+			"fetchedSpe" : fetchedSpe,
+			"fetchedMovepool" : fetchedMovepool,
+			"fetchedPrevo" : fetchedPrevo,
+			"fetchedEvo" : fetchedEvo,
+			"fetchedFlavor" : fetchedFlavor
+
 		});
 
 	});
@@ -106,18 +127,73 @@ router.get("/ocap", function(req, res)
 	
 });
 
+var fetchedusername;
+var enterpin;
+var fetchedMonName;
+var fetchedDesc;
+var fetchedPrim;
+var fetchedSec;
+var fetchedAb1;
+var fetchedAb2;
+var fetchedAb3;
+var fetchedHP;
+var fetchedAtk;
+var fetchedDef;
+var fetchedSpA;
+var fetchedSpD;
+var fetchedSpe;
+var fetchedMovepool;
+var fetchedPrevo;
+var fetchedEvo;
+var fetchedFlavor;
+
 router.post("/fetchmon", function(req, res)
 {
 	var db = req.db;
 	var collection = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 
-	var name = req.body.whichmon;
+	var bod = req.body;
 
-	collection.find({"author.username": name},{}, function(e, docs)
+	var name = bod.whichmon;
+
+	collection.find({"submission.name": name},{}, function(e, docs)
 	{
-		//console.log(docs),
+		console.log(docs.length);
 		//will always be 0 because will prevent adding same named poke
-		updatedusername = docs[0].author.username
+
+		if (docs.length == 0)
+		{
+			//the poke doesn't exist yet
+			err = "poke doesn't exist."
+		}
+		else
+		{
+			var sub = docs[0].submission;
+			fetchedusername = docs[0].author.username;
+			//check pin
+			fetchedMonName = sub.name;
+			fetchedDesc = sub.description;
+			console.log(fetchedDesc);
+			fetchedPrim = sub.typing.primary;
+			fetchedSec = sub.typing.secondary;
+			fetchedAb1 = sub.abilities.primary;
+			fetchedAb2 = sub.abilities.secondary;
+			fetchedAb3 = sub.abilities.tertiary;
+			fetchedHP = sub.stats.HP;
+			fetchedAtk = sub.stats.Atk;
+			fetchedDef = sub.stats.Def;
+			fetchedSpA = sub.stats.SpA;
+			fetchedSpD = sub.stats.SpD;
+			fetchedSpe = sub.stats.Spe;
+			fetchedMovepool = sub.movepool;
+			fetchedPrevo = sub.family.prevo;
+			fetchedEvo = sub.family.evo;
+			fetchedFlavor = sub.flavor;
+
+			err = "";
+		}
+
+
 	});
 	res.redirect("ocap");
 });
@@ -145,6 +221,20 @@ router.post("/checkmonname", function(req, res)
 });
 
 
+router.post("updatepoke", function(req, res)
+{
+	var collection = ocapmon;
+	var bod = req.body;
+
+
+
+
+
+
+
+});
+
+
 
 var reusername;
 var repin;
@@ -159,7 +249,7 @@ var rehp, reatk, redef, respa, respd, respe;
 var removepool;
 var reprevo;
 var reevo;
-var flavor;
+var reflavor;
 
 
 router.post("/submitpoke", function(req, res)
@@ -201,6 +291,12 @@ router.post("/submitpoke", function(req, res)
 	// {
 	// 	movesIn = movesIn.split(", ");
 	// }
+
+
+////////////////////do so if the same username submits, they have to also enter their pin/////
+//////////implement megas/////////
+
+
 
 	var newMon = new ocapmon(
 	{
