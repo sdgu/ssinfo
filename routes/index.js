@@ -94,7 +94,11 @@ router.get("/ocap", function(req, res)
 			"redef" : redef,
 			"respa" : respa,
 			"respd" : respd,
-			"respe" : respe
+			"respe" : respe,
+			"removepool" : removepool,
+			"reprevo" : reprevo,
+			"reevo" : reevo,
+			"reflavor" : reflavor
 		});
 
 	});
@@ -152,7 +156,10 @@ var reab1;
 var reab2;
 var reab3;
 var rehp, reatk, redef, respa, respd, respe;
-
+var removepool;
+var reprevo;
+var reevo;
+var flavor;
 
 
 router.post("/submitpoke", function(req, res)
@@ -257,6 +264,10 @@ router.post("/submitpoke", function(req, res)
 			respa = SpAIn;
 			respd = SpDIn;
 			respe = SpeIn;
+			removepool = movesIn;
+			reprevo = prevoIn;
+			reevo = evoIn;
+			reflavor = flavorIn;
 			err = e;
 		}
 		else
@@ -277,6 +288,10 @@ router.post("/submitpoke", function(req, res)
 			respa = "";
 			respd = "";
 			respe = "";
+			removepool = "";
+			reprevo = "";
+			reevo = "";
+			reflavor = "";
 			err = null;
 		}
 		// ocapmon.find({"author.username":"Lemonade"}, "author submission", function(err, result)
