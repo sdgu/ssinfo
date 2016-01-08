@@ -4,15 +4,20 @@ block content
 	script.
 		//alert("test" + "#{updatedusername}")
 		window.onload = function()
+			alert("#{err}")
 			document.getElementById("inputUserNameUpdate").value = "#{updatedusername}"
 
-	h1= title
-
+	h1 OCAP
+	p= err
 	p Welcome to a nonsuck CAP
 	ul
-		each auth, i in ocap
+		//- each auth, i in ocap.reverse()
+		//-  	li
+		//-  		p= auth.author.username
+		- for (var i = 1; i < 2; i++)
 			li
-				p= auth.author.username
+				p= ocap[i-1].author.username
+				
 	
 	table
 		tr
@@ -27,6 +32,10 @@ block content
 						input#inputUserName(type="text", placeholder="Your username", name="username")
 						p Pin
 						input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
+					form#checkMonName(name="checkmonname" method="post" action="/checkmonname")
+						p Mon Name
+						input#inputName(type="text" placeholder="name" name="name")
+						button#check(type="submit") Check
 						p Description
 						textarea#description(name="desc" rows="10" cols="30")
 						p Primay Typing
@@ -60,8 +69,6 @@ block content
 						input#inputEvo(type="text" placeholder="evo" name="evo")
 						p Flavor
 						textarea#flavor(name="flavor" rows="10" cols="30")
-						p Mon Name
-						input#inputName(type="text" placeholder="name" name="name")
 						br
 						br
 						button#btnSubmit(type="submit") Submit
@@ -79,6 +86,8 @@ block content
 						input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
 						p Pin
 						input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
+						p Update Mon Name
+						input#upName(type="text" placeholder="update name" name="upname")
 						p Description
 						textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
 						p Secondary Typing
@@ -110,8 +119,6 @@ block content
 						input#upEvo(type="text" placeholder="evo" name="upevo")
 						p Flavor
 						textarea#upflavor(name="upflavor" rows="10" cols="30")
-						p Mon Name
-						input#upinputName(type="text" placeholder="update name" name="upname")
 						br
 						br
 						button#btnSubmit(type="submit") Submit
