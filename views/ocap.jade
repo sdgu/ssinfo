@@ -11,6 +11,21 @@ block content
 			document.getElementById("inputUserName").value = "#{reusername}";
 			document.getElementById("inputPin").value = "#{repin}";
 			//skipping poke name because that's the only thing that fails
+			document.getElementById("description").innerHTML = "#{redesc}";
+			//document.getElementById("primtypingin").value = "#{reprim}";
+
+			var dropdownMenu = document.getElementById("primtypingin");
+			var findThis = "#{reprim}";
+			for (var i = 0, j = dropdownMenu.options.length; i < j; i++)
+			{
+				if (dropdownMenu.options[i].innerHTML == findThis)
+				{
+					dropdownMenu.selectedIndex = i;
+					break;
+				}
+			}
+
+
 		}
 
 	h1 OCAP
@@ -50,12 +65,13 @@ block content
 						textarea#description(name="desc" rows="10" cols="30")
 
 						p Primay Typing
-						select(name="primtypingin")
+						select#primtypingin(name="primtypingin")
 							option#Fairy1.Fairy(value="Fairy" name="Fairy1") Fairy
 							option#Water1.Water(value="Water" name="Water1") Water
+							option#Fire1.Fire(value="Fire" name="Fire1") Fire
 
 						p Secondary Typing
-						select(name="sectypingin")
+						select#sectypingin(name="sectypingin")
 							option#Fairy2.Fairy(value="Fairy" name="Fairy2") Fairy
 							option#Water2.Water(value="Water" name="Water2") Water
 
