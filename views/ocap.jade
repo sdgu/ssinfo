@@ -4,9 +4,11 @@ extends layout
 
 block content
 
+	//-script(src="/javascripts/updateFetch.js")
+
 	script.
 		function fetch()
-			alert("pasta")
+			document.getElementById("inputUserNameUpdate").value = "#{pasta}"
 
 	h1= title
 	p Welcome to a nonsuck CAP
@@ -26,6 +28,8 @@ block content
 			input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
 			p Description
 			textarea#description(name="desc" rows="10" cols="30")
+			br
+			button#btnSubmit(type="submit") Submit
 
 
 
@@ -34,8 +38,10 @@ block content
 		//- select
 		//- 	each auth, i in ocap
 		//- 		option= auth.submission.name
-		input#inputWhichMon(type="text" placeholde="Mon to update" name="whichmon")
-		button#fetchMon(type="submit" onclick="fetch()") Fetch
+
+		form#fetchUpdate(name="fetchmons" method="post" action="/fetchmon")
+			input#inputWhichMon(type="text" placeholde="Mon to update" name="whichmon")
+			button#fetchMon(type="submit" onclick="fetch()") Fetch
 		form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
 			p Username
 			input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
@@ -112,7 +118,7 @@ block content
 				p Mon Name
 				input#inputName(type="text" placeholder="name" name="name")
 				br
-				button#btnSubmit(type="submit") Submit
+
 
 
 

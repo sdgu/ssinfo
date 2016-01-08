@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -12,8 +13,11 @@ router.get("/ocap", function(req, res)
 	var collection = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 	collection.find({},{}, function(e, docs)
 	{
-		res.render('ocap', {"title": "OCAP", 
-			"ocap": docs});
+		res.render('ocap', 
+			{
+				"title": "OCAP", 
+				"ocap": docs,
+			});
 	});
 	
 });
@@ -57,18 +61,26 @@ var ocapmonSchema = mongoose.Schema(
 	}
 });
 
+
 //collection is the last one
 ocapmon = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 
 router.post("/submitpoke", function(req, res)
 {
-	
+
 	mongoose.connection = req.db;
 
 	var usernameIn = req.body.username;
 	var pinIn = req.body.pin;
 	var descIn = req.body.desc;
-	var movesIn = req.body.movepool.split(", ");
+
+	var movesIn = req.body.movepool;
+
+
+	// if (movesIn.contains(","))
+	// {
+	// 	movesIn = movesIn.split(", ");
+	// }
 
 	var newMon = new ocapmon(
 	{
@@ -94,39 +106,12 @@ router.post("/submitpoke", function(req, res)
 		// });
 		res.redirect("ocap");
 	})
+});
 
-	//var db = req.db;
-
-
-
-	//console.log("got here at least");
-
-
-	//var collection = db.collection("ocapTest");
-
-	// collection.insert(
-	// {
-	// 	"author.username": userName,
-	// 	"author.pin": pin
-	// }, function (err, doc)
-	// {
-	// 	if (err)
-	// 	{
-	// 		// collection.find({},{},{}).toArray(function(err, docs)
-	// 		// {
-	// 		// 	for (i in docs)
-	// 		// 	{
-	// 		// 		console.log(docs[i]);
-	// 		// 	}
-	// 		// });
-
-	// 		res.send("Issue");
-	// 	}
-	// 	else
-	// 	{
-	// 		res.redirect("ocap");
-	// 	}
-	// });
+router.post("/fetchmon", function(req, res)
+{
+	console.log("here");
+	res.redirect("ocap");
 });
 
 
