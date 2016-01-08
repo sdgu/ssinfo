@@ -25,7 +25,20 @@ block content
 				}
 			}
 
+			var secMenu = document.getElementById("sectypingin");
+			var findsec = "#{resec}";
+			for (var i = 0, j = secMenu.options.length; i < j; i++)
+			{
+				if (secMenu.options[i].innerHTML == findsec)
+				{
+					secMenu.selectedIndex = i;
+					break;
+				}
+			}
 
+			document.getElementById("inputAbility1").value = "#{reab1}";
+			document.getElementById("inputAbility2").value = "#{reab2}";
+			document.getElementById("inputAbility3").value = "#{reab3}";
 		}
 
 	h1 OCAP
