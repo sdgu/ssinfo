@@ -1,16 +1,20 @@
 extends layout
 
-
-
 block content
 
 	//-script(src="/javascripts/updateFetch.js")
 
+	//- script.
+	//- 	function fetch()
+	//- 		document.getElementById("inputUserNameUpdate").value = "#{test}"
+
 	script.
-		function fetch()
-			document.getElementById("inputUserNameUpdate").value = "#{pasta}"
+		//alert("test" + "#{updatedusername}")
+		window.onload = function()
+			document.getElementById("inputUserNameUpdate").value = "#{updatedusername}"
 
 	h1= title
+
 	p Welcome to a nonsuck CAP
 	ul
 		each auth, i in ocap
@@ -19,8 +23,9 @@ block content
 
 	div.column#leftcol
 		h3 Add new
-		select#nothing
-			option
+		form#pasta
+			input#pasta2(type="text" placeholde="Mon to update" name="whichmon")
+			button#pasta3(type="submit") Fetch
 		form#formSubmitMon(name="submitpoke", method="post", action="/submitpoke")
 			p Username
 			input#inputUserName(type="text", placeholder="Your username", name="username")
@@ -28,20 +33,40 @@ block content
 			input#inputPin(type="text", placeholder="Your pin (not secure)", name="pin")
 			p Description
 			textarea#description(name="desc" rows="10" cols="30")
+			p Primay Typing
+			input#Fairy1(type="radio", name="typing1")
+			label(for="Fairy1") Fairy
+			input#Water1(type="radio", name="typing1")
+			label(for="Water1") Water
+			p Abilities
+			input#inputAbility1(type="text", placeholder="Ability 1", name="ab1")
+			br
+			input#inputAbility2(type="text", placeholder="Ability 2", name="ab2")
+			br
+			input#inputAbility3(type="text", placeholder="Ability 3", name="ab3")
+			p Stats
+			input#inputHP(type="text", placeholder="Base HP", name="HP")
+			br
+			input#inputAtk(type="text", placeholder="Base Atk", name="Atk")
+			br
+			input#inputDef(type="text", placeholder="Base Def", name="Def")
+			br
+			input#inputSpA(type="text", placeholder="Base SpA", name="SpA")
+			br
+			input#inputSpD(type="text", placeholder="Base SpD", name="SpD")
+			br
+			input#inputSpe(type="text", placeholder="Base Spe", name="Spe")
+
 			br
 			button#btnSubmit(type="submit") Submit
-
-
-
 	div.column#rightcol
-		h3 Update
+		h3 Update by Mon Name
 		//- select
 		//- 	each auth, i in ocap
 		//- 		option= auth.submission.name
-
 		form#fetchUpdate(name="fetchmons" method="post" action="/fetchmon")
 			input#inputWhichMon(type="text" placeholde="Mon to update" name="whichmon")
-			button#fetchMon(type="submit" onclick="fetch()") Fetch
+			button#fetchMon(type="submit") Fetch
 		form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
 			p Username
 			input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
@@ -49,77 +74,58 @@ block content
 			input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
 			p Description
 			textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
-
-	table
-		tr
-			td
-				p Description
-				textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
-				
-			td
-				p Description
-				textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
-				
-		tr
-			td
-			td
-				
-		tr
-			td
-				
-			td
-				
-		tr
-			td
-				
-			td
-				
-		tr
-			td
-				
-			td
-				
-		tr
-			td
-				p Primay Typing
-				input#Fairy1(type="radio", name="typing1")
-				label(for="Fairy1") Fairy
-				input#Water1(type="radio", name="typing1")
-				label(for="Water1") Water
-				p Secondary Typing
-				input#Fairy2(type="radio", name="typing2")
-				label(for="Fairy2") Fairy
-				p Abilities
-				input#inputAbility1(type="text", placeholder="Ability 1", name="ab1")
-				
-				input#inputAbility2(type="text", placeholder="Ability 2", name="ab2")
-				
-				input#inputAbility3(type="text", placeholder="Ability 3", name="ab3")
-				
-				p Stats
-				input#inputHP(type="text", placeholder="Base HP", name="HP")
-				
-				input#inputAtk(type="text", placeholder="Base Atk", name="Atk")
-				
-				input#inputDef(type="text", placeholder="Base Def", name="Def")
-				
-				input#inputSpA(type="text", placeholder="Base SpA", name="SpA")
-				
-				input#inputSpD(type="text", placeholder="Base SpD", name="SpD")
-				
-				input#inputSpe(type="text", placeholder="Base Spe", name="Spe")
-				
-				p Movepool
-				textarea#movepool(name="movepool" rows="10" cols="30")
-				br
-				p Flavor
-				textarea#flavor(name="flavor" rows="10" cols="30")
-				br
-				p Mon Name
-				input#inputName(type="text" placeholder="name" name="name")
-				br
+			p Secondary Typing
+			input#Fairy2(type="radio", name="typing2")
+			label(for="Fairy2") Fairy
+			p Abilities
+			input#updateAbility1(type="text", placeholder="Ability 1", name="upab1")
+			br
+			input#updateAbility2(type="text", placeholder="Ability 2", name="upab2")
+			br
+			input#updateAbility3(type="text", placeholder="Ability 3", name="upab3")
+			p Stats
+			input#upHP(type="text", placeholder="Base HP", name="upHP")
+			br
+			input#upAtk(type="text", placeholder="Base Atk", name="upAtk")
+			br
+			input#upDef(type="text", placeholder="Base Def", name="upDef")
+			br
+			input#upSpA(type="text", placeholder="Base SpA", name="upSpA")
+			br
+			input#upSpD(type="text", placeholder="Base SpD", name="upSpD")
+			br
+			input#upSpe(type="text", placeholder="Base Spe", name="upSpe")
 
 
 
+				
 
+			
+			p Movepool
+			textarea#movepool(name="movepool" rows="10" cols="30")
+			br
+			p Flavor
+			textarea#flavor(name="flavor" rows="10" cols="30")
+			br
+			p Mon Name
+			input#inputName(type="text" placeholder="name" name="name")
+			br
 
+//- table
+//- 	tr
+//- 		td		
+//- 		td		
+//- 	tr
+//- 		td
+//- 		td		
+//- 	tr
+//- 		td		
+//- 		td		
+//- 	tr
+//- 		td		
+//- 		td		
+//- 	tr
+//- 		td		
+//- 		td
+//- 	tr
+//- 		td

@@ -7,6 +7,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
+var updatedusername;
+
 router.get("/ocap", function(req, res)
 {
 	var db = req.db;
@@ -17,10 +20,33 @@ router.get("/ocap", function(req, res)
 			{
 				"title": "OCAP", 
 				"ocap": docs,
+				"updatedusername": updatedusername
 			});
 	});
 	
 });
+
+router.post("/fetchmon", function(req, res)
+{
+	var db = req.db;
+	var collection = mongoose.model("ocapmon", ocapmonSchema, "ocap");
+
+	var name = req.body.whichmon;
+
+	collection.find({"author.username": name},{}, function(e, docs)
+	{
+		console.log(docs),
+		//will always be 0 because will prevent adding same named poke
+		updatedusername = docs[0].author.username
+		
+
+	});
+
+
+	res.redirect("ocap");
+});
+
+
 
 
 var mongoose = require("mongoose");
@@ -106,12 +132,6 @@ router.post("/submitpoke", function(req, res)
 		// });
 		res.redirect("ocap");
 	})
-});
-
-router.post("/fetchmon", function(req, res)
-{
-	console.log("here");
-	res.redirect("ocap");
 });
 
 
