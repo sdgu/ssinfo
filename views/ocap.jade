@@ -1,9 +1,12 @@
 extends layout
 
 block content
+
 	script.
 		window.onload = function test()
 		{
+			
+			
 			if ("#{err}" != "")
 				alert("#{err}");
 
@@ -61,6 +64,43 @@ block content
 			document.getElementById("descriptionUpdate").value = "#{fetchedDesc}";
 			//do typing 
 
+			var upMenu = document.getElementById("upprimtyping");
+			var upFind = "#{fetchedPrim}";
+			for (var i = 0, j = upMenu.options.length; i < j; i++)
+			{
+				if (upMenu.options[i].innerHTML == upFind)
+				{
+					upMenu.selectedIndex = i;
+					break;
+				}
+			}
+
+			var upsecMenu = document.getElementById("upsectyping");
+			var upfindsec = "#{fetchedSec}";
+			for (var i = 0, j = upsecMenu.options.length; i < j; i++)
+			{
+				if (upsecMenu.options[i].innerHTML == upfindsec)
+				{
+					upsecMenu.selectedIndex = i;
+					break;
+				}
+			}
+
+			document.getElementById("updateAbility1").value = "#{fetchedAb1}";
+			document.getElementById("updateAbility2").value = "#{fetchedAb2}";
+			document.getElementById("updateAbility3").value = "#{fetchedAb3}";
+
+			document.getElementById("upHP").value = "#{fetchedHP}";
+			document.getElementById("upAtk").value = "#{fetchedAtk}";
+			document.getElementById("upDef").value = "#{fetchedDef}";
+			document.getElementById("upSpA").value = "#{fetchedSpA}";
+			document.getElementById("upSpD").value = "#{fetchedSpD}";
+			document.getElementById("upSpe").value = "#{fetchedSpe}";
+
+			document.getElementById("upPrevo").value = "#{fetchedPrevo}";
+			document.getElementById("upEvo").value = "#{fetchedEvo}";
+			document.getElementById("upflavor").value = "#{fetchedFlavor}";
+
 		}
 
 	h1 OCAP
@@ -71,7 +111,7 @@ block content
 		//-  		p= auth.author.username
 		- for (var i = last5users.length-5; i < last5users.length; i++)
 			li
-				p= last5users[i].author.username
+				p= i + ": " + last5users[i].author.username
 				
 
 
@@ -151,21 +191,27 @@ block content
 					form#formUpdateMon(name="updatepoke", method="post", action="/updatepoke")
 						p Username
 						input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
+
 						p Enter Pin
 						input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
-						p Update Mon Name
+
+						p You are updating:
 						input#upName(type="text" placeholder="update name" name="upname")
+
 						p Description
 						textarea#descriptionUpdate(name="descupdate" rows="10" cols="30")
+
 						p Primay Typing
-						input#Fairy1-1(type="radio", name="typing1-1")
-						label(for="Fairy1-1") Fairy
-						input#Water1-1(type="radio", name="typing1-1")
-						label(for="Water1-1") Water
-						//-deal with this later
+						select#upprimtyping(name="upprimtyping")
+							option#upFairy1.Fairy(value="Fairy" name="upFairy1") Fairy
+							option#upWater1.Water(value="Water" name="upWater1") Water
+							option#upFire1.Fire(value="Fire" name="upFire1") Fire
+
 						p Secondary Typing
-						input#Fairy2-1(type="radio", name="typing2-1")
-						label(for="Fairy2-1") Fairy
+						select#upsectyping(name="upsectyping")
+							option#upFairy2.Fairy(value="Fairy" name="upFairy2") Fairy
+							option#upWater2.Water(value="Water" name="upWater2") Water
+
 						p Abilities
 						input#updateAbility1(type="text", placeholder="Ability 1", name="upab1")
 						br

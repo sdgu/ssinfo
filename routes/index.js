@@ -156,6 +156,14 @@ router.post("/fetchmon", function(req, res)
 
 	var name = bod.whichmon;
 
+
+	if (name.indexOf(" ") > -1)
+	{
+		name.replace(" ", "_");
+	}
+
+	console.log("name is: " + name);
+
 	collection.find({"submission.name": name},{}, function(e, docs)
 	{
 		console.log(docs.length);
@@ -173,7 +181,7 @@ router.post("/fetchmon", function(req, res)
 			//check pin
 			fetchedMonName = sub.name;
 			fetchedDesc = sub.description;
-			console.log(fetchedDesc);
+			//console.log(fetchedDesc);
 			fetchedPrim = sub.typing.primary;
 			fetchedSec = sub.typing.secondary;
 			fetchedAb1 = sub.abilities.primary;
@@ -196,6 +204,105 @@ router.post("/fetchmon", function(req, res)
 
 	});
 	res.redirect("ocap");
+});
+
+router.post("/updatepoke", function(req, res)
+{
+	var collection = ocapmon;
+	var bod = req.body;
+
+	console.log("editing: " + fetchedMonName);
+
+	//verify username and pin	
+
+	var updatedName = bod.upname;
+
+	var updatedDesc = bod.descupdate;
+
+	var updatedPrim = bod.upprimtyping;
+	var updatedSec = bod.upsectyping;
+
+	var updatedAb1 = bod.upab1;
+	var updatedAb2 = bod.upab2;
+	var updatedAb3 = bod.upab3;
+
+	var updatedHP = bod.upHP;
+	var updatedAtk = bod.upAtk;
+	var updatedDef = bod.upDef;
+	var updatedSpA = bod.upSpA;
+	var updatedSpD = bod.upSpD;
+	var updatedSpe = bod.upSpe;
+
+
+
+
+
+	//if changing the name of the mon, rewrite the name in that db entry
+
+	if (updatedName != fetchedMonName)
+	{
+		collection.update(
+			{"submission.name" : fetchedMonName}, 
+			{
+				"submission.name" : updatedName,
+				"submission.description" : updatedDesc
+			}, 
+			function(e, docs)
+		{
+			console.log("the new entry " + docs);
+		});
+	}
+	else
+	{
+		collection.update(
+			{"submission.name" : fetchedMonName,}, 
+			{
+				"submission.name" : updatedName,
+				"submission.description" : updatedDesc,
+
+				"submission.typing.primary" : updatedPrim,
+				"submission.typing.secondary" : updatedSec,
+
+				"submission.abilities.primary" : updatedAb1,
+				"submission.abilities.secondary" : updatedAb2,
+				"submission.abilities.tertiary" : updatedAb3,
+
+				"submission.stats.HP" : updatedHP,
+				"submission.stats.Atk" : updatedAtk,
+				"submission.stats.Def" : updatedDef,
+				"submission.stats.SpA" : updatedSpA,
+				"submission.stats.SpD" : updatedSpD,
+				"submission.stats.Spe" : updatedSpe
+			}, 
+			function(e, docs)
+		{
+			//set the fetched fields to blank, "refresh" the form
+			fetchedusername = "";
+			fetchedMonName = "";
+			fetchedDesc = "";
+
+			fetchedPrim = "";
+			fetchedSec = "";
+
+			fetchedAb1 = "";
+			fetchedAb2 = "";
+			fetchedAb3 = "";
+
+			fetchedHP = "";
+			fetchedAtk = "";
+			fetchedDef = "";
+			fetchedSpA = "";
+			fetchedSpD = "";
+			fetchedSpe = "";
+
+			
+			console.log("the new entry " + docs);
+		});
+	}
+	res.redirect("ocap");
+
+
+
 });
 
 
@@ -221,18 +328,7 @@ router.post("/checkmonname", function(req, res)
 });
 
 
-router.post("updatepoke", function(req, res)
-{
-	var collection = ocapmon;
-	var bod = req.body;
 
-
-
-
-
-
-
-});
 
 
 
@@ -266,6 +362,12 @@ router.post("/submitpoke", function(req, res)
 	var usernameIn = bod.username;
 	var pinIn = bod.pin;
 	var pokenameIn = bod.name;
+
+	if (pokenameIn.indexOf(" ") > -1)
+	{
+		pokenameIn.replace(" ", "_");
+	}
+
 	var descIn = bod.desc;
 	var primTypeIn = bod.primtypingin;
 
