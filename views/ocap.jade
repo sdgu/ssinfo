@@ -97,9 +97,13 @@ block content
 			document.getElementById("upSpD").value = "#{fetchedSpD}";
 			document.getElementById("upSpe").value = "#{fetchedSpe}";
 
+			document.getElementById("upmovepool").value = "#{fetchedMovepool}";
+
 			document.getElementById("upPrevo").value = "#{fetchedPrevo}";
 			document.getElementById("upEvo").value = "#{fetchedEvo}";
 			document.getElementById("upflavor").value = "#{fetchedFlavor}";
+
+
 
 		}
 
@@ -141,14 +145,46 @@ block content
 
 						p Primay Typing
 						select#primtypingin(name="primtypingin")
-							option#Fairy1.Fairy(value="Fairy" name="Fairy1") Fairy
-							option#Water1.Water(value="Water" name="Water1") Water
-							option#Fire1.Fire(value="Fire" name="Fire1") Fire
-
+							option.Type#Normal1.Normal(value="Normal" name="Normal1") Normal
+							option.Type#Fire1.Fire(value="Fire" name="Fire1") Fire
+							option.Type#Water1.Water(value="Water" name="Water1") Water
+							option.Type#Electric1.Electric(value="Electric" name="Electric1") Electric
+							option.Type#Grass1.Grass(value="Grass" name="Grass1") Grass
+							option.Type#Ice1.Ice(value="Ice" name="Ice1") Ice
+							option.Type#Fighting1.Fighting(value="Fighting" name="Fighting1") Fighting
+							option.Type#Poison1.Poison(value="Poison" name="Poison1") Poison
+							option.Type#Ground1.Ground(value="Ground" name="Ground1") Ground
+							option.Type#Flying1.Flying(value="Flying" name="Flying1") Flying
+							option.Type#Psychic1.Psychic(value="Psychic" name="Psychic1") Psychic
+							option.Type#Bug1.Bug(value="Bug" name="Bug1") Bug
+							option.Type#Rock1.Rock(value="Rock" name="Rock1") Rock
+							option.Type#Ghost1.Ghost(value="Ghost" name="Ghost1") Ghost
+							option.Type#Dragon1.Dragon(value="Dragon" name="Dragon1") Dragon
+							option.Type#Steel1.Steel(value="Steel" name="Steel1") Steel
+							option.Type#Dark1.Dark(value="Dark" name="Dark1") Dark
+							option.Type#Fairy1.Fairy(value="Fairy" name="Fairy1") Fairy
+							
 						p Secondary Typing
 						select#sectypingin(name="sectypingin")
-							option#Fairy2.Fairy(value="Fairy" name="Fairy2") Fairy
-							option#Water2.Water(value="Water" name="Water2") Water
+							option.Type#blank2.blankTyping(value = "" name="blanktyping") None
+							option.Type#Normal2.Normal(value="Normal" name="Normal2") Normal
+							option.Type#Fire2.Fire(value="Fire" name="Fire2") Fire
+							option.Type#Water2.Water(value="Water" name="Water2") Water
+							option.Type#Electric2.Electric(value="Electric" name="Electric2") Electric
+							option.Type#Grass2.Grass(value="Grass" name="Grass2") Grass
+							option.Type#Ice2.Ice(value="Ice" name="Ice2") Ice
+							option.Type#Fighting2.Fighting(value="Fighting" name="Fighting2") Fighting
+							option.Type#Poison2.Poison(value="Poison" name="Poison2") Poison
+							option.Type#Ground2.Ground(value="Ground" name="Ground2") Ground
+							option.Type#Flying2.Flying(value="Flying" name="Flying2") Flying
+							option.Type#Psychic2.Psychic(value="Psychic" name="Psychic2") Psychic
+							option.Type#Bug2.Bug(value="Bug" name="Bug2") Bug
+							option.Type#Rock2.Rock(value="Rock" name="Rock2") Rock
+							option.Type#Ghost2.Ghost(value="Ghost" name="Ghost2") Ghost
+							option.Type#Dragon2.Dragon(value="Dragon" name="Dragon2") Dragon
+							option.Type#Steel2.Steel(value="Steel" name="Steel2") Steel
+							option.Type#Dark2.Dark(value="Dark" name="Dark2") Dark
+							option.Type#Fairy2.Fairy(value="Fairy" name="Fairy2") Fairy
 
 						p Abilities
 						input#inputAbility1(type="text", placeholder="Ability 1", name="ab1")
@@ -203,14 +239,46 @@ block content
 
 						p Primay Typing
 						select#upprimtyping(name="upprimtyping")
-							option#upFairy1.Fairy(value="Fairy" name="upFairy1") Fairy
-							option#upWater1.Water(value="Water" name="upWater1") Water
-							option#upFire1.Fire(value="Fire" name="upFire1") Fire
+							option.Type#upNormal1.Normal(value="Normal" name="upNormal1") Normal
+							option.Type#upFire1.Fire(value="Fire" name="upFire1") Fire
+							option.Type#upWater1.Water(value="Water" name="upWater1") Water
+							option.Type#upElectric1.Electric(value="Electric" name="upElectric1") Electric
+							option.Type#upGrass1.Grass(value="Grass" name="upGrass1") Grass
+							option.Type#upIce1.Ice(value="Ice" name="upIce1") Ice
+							option.Type#upFighting1.Fighting(value="Fighting" name="upFighting1") Fighting
+							option.Type#upPoison1.Poison(value="Poison" name="upPoison1") Poison
+							option.Type#upGround1.Ground(value="Ground" name="upGround1") Ground
+							option.Type#upFlying1.Flying(value="Flying" name="upFlying1") Flying
+							option.Type#upPsychic1.Psychic(value="Psychic" name="upPsychic1") Psychic
+							option.Type#upBug1.Bug(value="Bug" name="upBug1") Bug
+							option.Type#upRock1.Rock(value="Rock" name="upRock1") Rock
+							option.Type#upGhost1.Ghost(value="Ghost" name="upGhost1") Ghost
+							option.Type#upDragon1.Dragon(value="Dragon" name="upDragon1") Dragon
+							option.Type#upSteel1.Steel(value="Steel" name="upSteel1") Steel
+							option.Type#upDark1.Dark(value="Dark" name="upDark1") Dark
+							option.Type#upFairy1.Fairy(value="Fairy" name="upFairy1") Fairy
 
 						p Secondary Typing
 						select#upsectyping(name="upsectyping")
-							option#upFairy2.Fairy(value="Fairy" name="upFairy2") Fairy
-							option#upWater2.Water(value="Water" name="upWater2") Water
+							option.Type#upblank2.blankTyping(value = "" name="upblanktyping") None
+							option.Type#upNormal2.Normal(value="Normal" name="upNormal2") Normal
+							option.Type#upFire2.Fire(value="Fire" name="upFire2") Fire
+							option.Type#upWater2.Water(value="Water" name="upWater2") Water
+							option.Type#upElectric2.Electric(value="Electric" name="upElectric2") Electric
+							option.Type#upGrass2.Grass(value="Grass" name="upGrass2") Grass
+							option.Type#upIce2.Ice(value="Ice" name="upIce2") Ice
+							option.Type#upFighting2.Fighting(value="Fighting" name="upFighting2") Fighting
+							option.Type#upPoison2.Poison(value="Poison" name="upPoison2") Poison
+							option.Type#upGround2.Ground(value="Ground" name="upGround2") Ground
+							option.Type#upFlying2.Flying(value="Flying" name="upFlying2") Flying
+							option.Type#upPsychic2.Psychic(value="Psychic" name="upPsychic2") Psychic
+							option.Type#upBug2.Bug(value="Bug" name="upBug2") Bug
+							option.Type#upRock2.Rock(value="Rock" name="upRock2") Rock
+							option.Type#upGhost2.Ghost(value="Ghost" name="upGhost2") Ghost
+							option.Type#upDragon2.Dragon(value="Dragon" name="upDragon2") Dragon
+							option.Type#upSteel2.Steel(value="Steel" name="upSteel2") Steel
+							option.Type#upDark2.Dark(value="Dark" name="upDark2") Dark
+							option.Type#upFairy2.Fairy(value="Fairy" name="upFairy2") Fairy
 
 						p Abilities
 						input#updateAbility1(type="text", placeholder="Ability 1", name="upab1")

@@ -56,17 +56,110 @@ table td:last-child
 	border-right: none;
 }
 
+
 #pasta
 {
 	visibility: hidden;
 }
 
 
+.Type
+{
+	color: white;
+	text-shadow: 1px 1px 1px #000;
+}
 
+.Bug
+{
+	background: transparent linear-gradient(#A8B820, #8D9A1B) repeat scroll 0% 0%;
+	border-color: black;
+}
 
+.Dark
+{
+	background: transparent linear-gradient(#705848, #513F34) repeat scroll 0% 0%;
 
+}
 
+.Dragon
+{
+	background: transparent linear-gradient(#7038F8, #4C08EF) repeat scroll 0% 0%;
+}
 
+.Electric
+{
+	background: transparent linear-gradient(#F8D030, #F0C108) repeat scroll 0% 0%;
+}
+
+.Fairy
+{
+	background: transparent linear-gradient(#F98CFF, #F540FF) repeat scroll 0% 0%;
+}
+
+.Fighting
+{
+	background: transparent linear-gradient(#C03028, #9D2721) repeat scroll 0% 0%;
+}
+
+.Fire
+{
+	background: transparent linear-gradient(#F08030, #DD6610) repeat scroll 0% 0%;
+}
+
+.Flying
+{
+	background: transparent linear-gradient(#A890F0, #9180C4) repeat scroll 0% 0%;
+}
+
+.Ghost
+{
+	background: transparent linear-gradient(#705898, #554374) repeat scroll 0% 0%;
+}
+
+.Grass
+{
+	background: transparent linear-gradient(#78C850, #5CA935) repeat scroll 0% 0%;
+}
+
+.Ground
+{
+	background: transparent linear-gradient(#E0C068, #D4A82F) repeat scroll 0% 0%;
+}
+
+.Ice
+{
+	background: transparent linear-gradient(#98D8D8, #69C6C6) repeat scroll 0% 0%;
+}
+
+.Normal
+{
+	background: transparent linear-gradient(#A8A878, #8A8A59) repeat scroll 0% 0%;
+}
+
+.Poison
+{
+	background: transparent linear-gradient(#A040A0, #803380) repeat scroll 0% 0%;
+}
+
+.Psychic
+{
+	background: transparent linear-gradient(#F85888, #F61C5D) repeat scroll 0% 0%;
+}
+
+.Rock
+{
+	background: transparent linear-gradient(#B8A038, #93802D) repeat scroll 0% 0%;
+}
+
+.Steel
+{
+	background: transparent linear-gradient(#B8B8D0, #9797BA) repeat scroll 0% 0%;
+}
+
+.Water
+{
+	background: transparent linear-gradient(#6890F0, #386CEB) repeat scroll 0% 0%;
+}
 
 /* select(name="typing")
 // 	option(value="prim", selected="selected") 1st Type

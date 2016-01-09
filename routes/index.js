@@ -233,6 +233,12 @@ router.post("/updatepoke", function(req, res)
 	var updatedSpD = bod.upSpD;
 	var updatedSpe = bod.upSpe;
 
+	var updatedMovepool = bod.upmovepool;
+
+	var updatedPrevo = bod.upprevo;
+	var updatedEvo = bod.upevo;
+
+	var updatedFlavor = bod.upflavor;
 
 
 
@@ -272,7 +278,16 @@ router.post("/updatepoke", function(req, res)
 				"submission.stats.Def" : updatedDef,
 				"submission.stats.SpA" : updatedSpA,
 				"submission.stats.SpD" : updatedSpD,
-				"submission.stats.Spe" : updatedSpe
+				"submission.stats.Spe" : updatedSpe,
+
+				"submission.movepool" : updatedMovepool,
+
+				"submission.family.prevo" : updatedPrevo,
+				"submission.family.evo" : updatedEvo,
+
+				"submission.flavor" : updatedFlavor
+
+
 			}, 
 			function(e, docs)
 		{
@@ -295,7 +310,15 @@ router.post("/updatepoke", function(req, res)
 			fetchedSpD = "";
 			fetchedSpe = "";
 
-			
+			fetchedMovepool = "";
+			fetchedPrevo = "";
+			fetchedEvo = "";
+
+			fetchedFlavor = "";
+
+			err = "";
+
+
 			console.log("the new entry " + docs);
 		});
 	}
