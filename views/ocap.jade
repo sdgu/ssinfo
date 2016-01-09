@@ -5,10 +5,27 @@ block content
 	script.
 		window.onload = function test()
 		{
+
+			var testerr = "#{err}";
+			var x = document.cookie;
+			var ind = x.indexOf("error");
+			var reterr = testerr.substring(ind + 6);
+
+
+			if (testerr != "") //there is an error
+			{
+				//alert("cook: " + x + " " + ind + " " + reterr);
+				x = "error=" + testerr + ";";
+				alert(x);
+			}
+			else
+			{
+			}
+
+
 			
-			
-			if ("#{err}" != "")
-				alert("#{err}");
+			//- if ("#{err}" != "")
+			//- 	alert("#{err}");
 
 
 
@@ -103,6 +120,7 @@ block content
 			document.getElementById("upEvo").value = "#{fetchedEvo}";
 			document.getElementById("upflavor").value = "#{fetchedFlavor}";
 
+			document.cookie = "error=;";
 
 
 		}
@@ -118,7 +136,9 @@ block content
 			li
 				p= i + ": " + last5users[i].author.username
 				
-	p other things here
+	p The pin is not encrypted, so use something insecure (ie not your real pin/pass) like your birthday. This is here so probably only you can change your stuff. Since the info isn't sensitive I probably won't bother securing it. Currently the pin is tied to the name of your Pokemon.
+
+	p Movepool will eventually save as an array.
 
 	
 	table
@@ -205,7 +225,7 @@ block content
 						input#inputSpD(type="text", placeholder="Base SpD", name="SpD")
 						br
 						input#inputSpe(type="text", placeholder="Base Spe", name="Spe")
-						p Movepool
+						p Movepool (separate with ,)
 						textarea#movepool(name="movepool" rows="10" cols="30")
 						p Evolution Line
 						input#inputPrevo(type="text" placeholder="prevo" name="prevo")
@@ -232,7 +252,7 @@ block content
 						p Enter Pin
 						input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
 
-						p You are updating:
+						p Updated Name
 						input#upName(type="text" placeholder="update name" name="upname")
 
 						p Description

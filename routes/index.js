@@ -7,6 +7,7 @@ var uniqueVal = require("mongoose-unique-validator");
 
 var ocapmonSchema = mongoose.Schema(
 {
+	_id: String,
 	author:
 	{
 		username: String,
@@ -259,7 +260,7 @@ router.post("/updatepoke", function(req, res)
 					{"submission.name" : fetchedMonName}, 
 					{
 						"submission.name" : updatedName,
-						"submission.description" : updatedDesc
+						"submission.description" : updatedDesc,
 
 						"submission.typing.primary" : updatedPrim,
 						"submission.typing.secondary" : updatedSec,
@@ -568,6 +569,7 @@ router.post("/submitpoke", function(req, res)
 
 var newMon = new ocapmon(
 {
+	_id: Math.random(),
 	author:
 	{
 		username: usernameIn,
@@ -632,7 +634,7 @@ newMon.save(function(e)
 		reprevo = prevoIn;
 		reevo = evoIn;
 		reflavor = flavorIn;
-		err = e;
+		err = "A Mon with that name already exists.";
 	}
 	else
 	{
@@ -657,6 +659,7 @@ newMon.save(function(e)
 		reevo = "";
 		reflavor = "";
 		err = null;
+		console.log(err);
 	}
 		// ocapmon.find({"author.username":"Lemonade"}, "author submission", function(err, result)
 		// {
