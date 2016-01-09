@@ -56,7 +56,7 @@ ocapmon = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+	res.render('index', { title: 'Express' });
 });
 
 
@@ -122,7 +122,7 @@ router.get("/ocap", function(req, res)
 
 		});
 
-	});
+});
 	//console.log(err);
 	
 });
@@ -213,7 +213,13 @@ router.post("/updatepoke", function(req, res)
 
 	console.log("editing: " + fetchedMonName);
 
-	//verify username and pin	
+	//verify username and pin
+
+	//uname will be filled so check pin
+	var uname = bod.usernameupdate;
+
+	var upin = bod.pinupdate;
+
 
 	var updatedName = bod.upname;
 
@@ -242,87 +248,224 @@ router.post("/updatepoke", function(req, res)
 
 
 
+	collection.find({"submission.name" : fetchedMonName},{}, function(e, docs)
+	{
+		if (docs[0].author.pin == upin)
+		{
+			console.log("the pin works");
+			if (updatedName != fetchedMonName)
+			{
+				collection.update(
+					{"submission.name" : fetchedMonName}, 
+					{
+						"submission.name" : updatedName,
+						"submission.description" : updatedDesc
+
+						"submission.typing.primary" : updatedPrim,
+						"submission.typing.secondary" : updatedSec,
+
+						"submission.abilities.primary" : updatedAb1,
+						"submission.abilities.secondary" : updatedAb2,
+						"submission.abilities.tertiary" : updatedAb3,
+
+						"submission.stats.HP" : updatedHP,
+						"submission.stats.Atk" : updatedAtk,
+						"submission.stats.Def" : updatedDef,
+						"submission.stats.SpA" : updatedSpA,
+						"submission.stats.SpD" : updatedSpD,
+						"submission.stats.Spe" : updatedSpe,
+
+						"submission.movepool" : updatedMovepool,
+
+						"submission.family.prevo" : updatedPrevo,
+						"submission.family.evo" : updatedEvo,
+
+						"submission.flavor" : updatedFlavor
+					}, 
+					function(e, docs)
+					{
+						fetchedusername = "";
+						fetchedMonName = "";
+						fetchedDesc = "";
+
+						fetchedPrim = "";
+						fetchedSec = "";
+
+						fetchedAb1 = "";
+						fetchedAb2 = "";
+						fetchedAb3 = "";
+
+						fetchedHP = "";
+						fetchedAtk = "";
+						fetchedDef = "";
+						fetchedSpA = "";
+						fetchedSpD = "";
+						fetchedSpe = "";
+
+						fetchedMovepool = "";
+						fetchedPrevo = "";
+						fetchedEvo = "";
+
+						fetchedFlavor = "";
+
+						err = "";
+						console.log("the new entry " + docs);
+					});
+			}
+			else
+			{
+				collection.update(
+					{"submission.name" : fetchedMonName,}, 
+					{
+						"submission.name" : updatedName,
+						"submission.description" : updatedDesc,
+
+						"submission.typing.primary" : updatedPrim,
+						"submission.typing.secondary" : updatedSec,
+
+						"submission.abilities.primary" : updatedAb1,
+						"submission.abilities.secondary" : updatedAb2,
+						"submission.abilities.tertiary" : updatedAb3,
+
+						"submission.stats.HP" : updatedHP,
+						"submission.stats.Atk" : updatedAtk,
+						"submission.stats.Def" : updatedDef,
+						"submission.stats.SpA" : updatedSpA,
+						"submission.stats.SpD" : updatedSpD,
+						"submission.stats.Spe" : updatedSpe,
+
+						"submission.movepool" : updatedMovepool,
+
+						"submission.family.prevo" : updatedPrevo,
+						"submission.family.evo" : updatedEvo,
+
+						"submission.flavor" : updatedFlavor
+
+
+					}, 
+					function(e, docs)
+					{
+						//set the fetched fields to blank, "refresh" the form
+						fetchedusername = "";
+						fetchedMonName = "";
+						fetchedDesc = "";
+
+						fetchedPrim = "";
+						fetchedSec = "";
+
+						fetchedAb1 = "";
+						fetchedAb2 = "";
+						fetchedAb3 = "";
+
+						fetchedHP = "";
+						fetchedAtk = "";
+						fetchedDef = "";
+						fetchedSpA = "";
+						fetchedSpD = "";
+						fetchedSpe = "";
+
+						fetchedMovepool = "";
+						fetchedPrevo = "";
+						fetchedEvo = "";
+
+						fetchedFlavor = "";
+
+						err = "";
+
+
+						console.log("the new entry " + docs);
+					});
+			}
+		}
+		else
+		{
+			console.log("pin doesn't work");
+			err = "pin doesn't work";
+		}
+});
+
+
 
 	//if changing the name of the mon, rewrite the name in that db entry
 
-	if (updatedName != fetchedMonName)
-	{
-		collection.update(
-			{"submission.name" : fetchedMonName}, 
-			{
-				"submission.name" : updatedName,
-				"submission.description" : updatedDesc
-			}, 
-			function(e, docs)
-		{
-			console.log("the new entry " + docs);
-		});
-	}
-	else
-	{
-		collection.update(
-			{"submission.name" : fetchedMonName,}, 
-			{
-				"submission.name" : updatedName,
-				"submission.description" : updatedDesc,
+// 	if (updatedName != fetchedMonName)
+// 	{
+// 		collection.update(
+// 			{"submission.name" : fetchedMonName}, 
+// 			{
+// 				"submission.name" : updatedName,
+// 				"submission.description" : updatedDesc
+// 			}, 
+// 			function(e, docs)
+// 			{
+// 				console.log("the new entry " + docs);
+// 			});
+// 	}
+// 	else
+// 	{
+// 		collection.update(
+// 			{"submission.name" : fetchedMonName,}, 
+// 			{
+// 				"submission.name" : updatedName,
+// 				"submission.description" : updatedDesc,
 
-				"submission.typing.primary" : updatedPrim,
-				"submission.typing.secondary" : updatedSec,
+// 				"submission.typing.primary" : updatedPrim,
+// 				"submission.typing.secondary" : updatedSec,
 
-				"submission.abilities.primary" : updatedAb1,
-				"submission.abilities.secondary" : updatedAb2,
-				"submission.abilities.tertiary" : updatedAb3,
+// 				"submission.abilities.primary" : updatedAb1,
+// 				"submission.abilities.secondary" : updatedAb2,
+// 				"submission.abilities.tertiary" : updatedAb3,
 
-				"submission.stats.HP" : updatedHP,
-				"submission.stats.Atk" : updatedAtk,
-				"submission.stats.Def" : updatedDef,
-				"submission.stats.SpA" : updatedSpA,
-				"submission.stats.SpD" : updatedSpD,
-				"submission.stats.Spe" : updatedSpe,
+// 				"submission.stats.HP" : updatedHP,
+// 				"submission.stats.Atk" : updatedAtk,
+// 				"submission.stats.Def" : updatedDef,
+// 				"submission.stats.SpA" : updatedSpA,
+// 				"submission.stats.SpD" : updatedSpD,
+// 				"submission.stats.Spe" : updatedSpe,
 
-				"submission.movepool" : updatedMovepool,
+// 				"submission.movepool" : updatedMovepool,
 
-				"submission.family.prevo" : updatedPrevo,
-				"submission.family.evo" : updatedEvo,
+// 				"submission.family.prevo" : updatedPrevo,
+// 				"submission.family.evo" : updatedEvo,
 
-				"submission.flavor" : updatedFlavor
-
-
-			}, 
-			function(e, docs)
-		{
-			//set the fetched fields to blank, "refresh" the form
-			fetchedusername = "";
-			fetchedMonName = "";
-			fetchedDesc = "";
-
-			fetchedPrim = "";
-			fetchedSec = "";
-
-			fetchedAb1 = "";
-			fetchedAb2 = "";
-			fetchedAb3 = "";
-
-			fetchedHP = "";
-			fetchedAtk = "";
-			fetchedDef = "";
-			fetchedSpA = "";
-			fetchedSpD = "";
-			fetchedSpe = "";
-
-			fetchedMovepool = "";
-			fetchedPrevo = "";
-			fetchedEvo = "";
-
-			fetchedFlavor = "";
-
-			err = "";
+// 				"submission.flavor" : updatedFlavor
 
 
-			console.log("the new entry " + docs);
-		});
-	}
-	res.redirect("ocap");
+// 			}, 
+// 			function(e, docs)
+// 			{
+// 			//set the fetched fields to blank, "refresh" the form
+// 			fetchedusername = "";
+// 			fetchedMonName = "";
+// 			fetchedDesc = "";
+
+// 			fetchedPrim = "";
+// 			fetchedSec = "";
+
+// 			fetchedAb1 = "";
+// 			fetchedAb2 = "";
+// 			fetchedAb3 = "";
+
+// 			fetchedHP = "";
+// 			fetchedAtk = "";
+// 			fetchedDef = "";
+// 			fetchedSpA = "";
+// 			fetchedSpD = "";
+// 			fetchedSpe = "";
+
+// 			fetchedMovepool = "";
+// 			fetchedPrevo = "";
+// 			fetchedEvo = "";
+
+// 			fetchedFlavor = "";
+
+// 			err = "";
+
+
+// 			console.log("the new entry " + docs);
+// 		});
+// }
+res.redirect("ocap");
 
 
 
@@ -395,7 +538,7 @@ router.post("/submitpoke", function(req, res)
 	var primTypeIn = bod.primtypingin;
 
 	var secdTypeIn = bod.sectypingin;
-		console.log("typing: " + primTypeIn + " / " + secdTypeIn);
+	console.log("typing: " + primTypeIn + " / " + secdTypeIn);
 
 	var ab1In = bod.ab1;
 	var ab2In = bod.ab2;
@@ -423,105 +566,105 @@ router.post("/submitpoke", function(req, res)
 
 
 
-	var newMon = new ocapmon(
+var newMon = new ocapmon(
+{
+	author:
 	{
-		author:
+		username: usernameIn,
+		pin: pinIn
+	},
+	submission:
+	{
+		description: descIn,
+		typing:
 		{
-			username: usernameIn,
-			pin: pinIn
+			primary: primTypeIn,
+			secondary: secdTypeIn
 		},
-		submission:
+		abilities:
 		{
-			description: descIn,
-			typing:
-			{
-				primary: primTypeIn,
-				secondary: secdTypeIn
-			},
-			abilities:
-			{
-				primary: ab1In,
-				secondary: ab2In,
-				tertiary: ab3In
-			},
-			stats:
-			{
-				HP: HPIn,
-				Atk: AtkIn,
-				Def: DefIn,
-				SpA: SpAIn,
-				SpD: SpDIn,
-				Spe: SpeIn
-			},
-			movepool: movesIn,
-			family:
-			{
-				prevo: prevoIn,
-				evo: evoIn
-			},
-			flavor: flavorIn,
-			name: pokenameIn
-		}
-	});
+			primary: ab1In,
+			secondary: ab2In,
+			tertiary: ab3In
+		},
+		stats:
+		{
+			HP: HPIn,
+			Atk: AtkIn,
+			Def: DefIn,
+			SpA: SpAIn,
+			SpD: SpDIn,
+			Spe: SpeIn
+		},
+		movepool: movesIn,
+		family:
+		{
+			prevo: prevoIn,
+			evo: evoIn
+		},
+		flavor: flavorIn,
+		name: pokenameIn
+	}
+});
 
-	newMon.save(function(e)
+newMon.save(function(e)
+{
+	console.log("Error: " + e);
+	if (e != null)
 	{
-		console.log("Error: " + e);
-		if (e != null)
-		{
-			console.log("error was not null");
-			reusername = usernameIn;
-			repin = pinIn;
-			remonname = pokenameIn;
-			redesc = descIn;
-			reprim = primTypeIn;
-			resec = secdTypeIn;
-			reab1 = ab1In;
-			reab2 = ab2In;
-			reab3 = ab3In;
-			rehp = HPIn;
-			reatk = AtkIn;
-			redef = DefIn;
-			respa = SpAIn;
-			respd = SpDIn;
-			respe = SpeIn;
-			removepool = movesIn;
-			reprevo = prevoIn;
-			reevo = evoIn;
-			reflavor = flavorIn;
-			err = e;
-		}
-		else
-		{
-			console.log("submitted poke");
-			reusername = "";
-			repin = "";
-			remonname = "";
-			redesc = "";
-			reprim = "";
-			resec = "";
-			reab1 = "";
-			reab2 = "";
-			reab3 = "";
-			rehp = "";
-			reatk = "";
-			redef = "";
-			respa = "";
-			respd = "";
-			respe = "";
-			removepool = "";
-			reprevo = "";
-			reevo = "";
-			reflavor = "";
-			err = null;
-		}
+		console.log("error was not null");
+		reusername = usernameIn;
+		repin = pinIn;
+		remonname = pokenameIn;
+		redesc = descIn;
+		reprim = primTypeIn;
+		resec = secdTypeIn;
+		reab1 = ab1In;
+		reab2 = ab2In;
+		reab3 = ab3In;
+		rehp = HPIn;
+		reatk = AtkIn;
+		redef = DefIn;
+		respa = SpAIn;
+		respd = SpDIn;
+		respe = SpeIn;
+		removepool = movesIn;
+		reprevo = prevoIn;
+		reevo = evoIn;
+		reflavor = flavorIn;
+		err = e;
+	}
+	else
+	{
+		console.log("submitted poke");
+		reusername = "";
+		repin = "";
+		remonname = "";
+		redesc = "";
+		reprim = "";
+		resec = "";
+		reab1 = "";
+		reab2 = "";
+		reab3 = "";
+		rehp = "";
+		reatk = "";
+		redef = "";
+		respa = "";
+		respd = "";
+		respe = "";
+		removepool = "";
+		reprevo = "";
+		reevo = "";
+		reflavor = "";
+		err = null;
+	}
 		// ocapmon.find({"author.username":"Lemonade"}, "author submission", function(err, result)
 		// {
 		// 	if (err) throw err;
 		// 	console.log("Found: " + result);
 		// });
-		res.redirect("ocap");
-	})
+res.redirect("ocap");
+})
 });
 
 ocapmonSchema.plugin(uniqueVal);

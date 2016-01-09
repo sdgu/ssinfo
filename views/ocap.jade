@@ -109,6 +109,7 @@ block content
 
 	h1 OCAP
 	p Welcome to a nonsuck CAP
+	p This is a list of the usernames of the last 5 submissions. If your name appears, it means your submission succeded.
 	ul
 		//- each auth, i in ocap.reverse()
 		//-  	li
@@ -117,7 +118,7 @@ block content
 			li
 				p= i + ": " + last5users[i].author.username
 				
-
+	p other things here
 
 	
 	table
