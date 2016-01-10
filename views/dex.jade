@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+	h1= title
+
+	p this is the dex
+
+	ul
+	each auth, i in tests
+		li= i + ": " + auth.submission.name
+		ul
+			li #{auth.submission.description}
+			li Typing: 
+			ul
+				li
+					div(class="Type TypeDex" class="#{auth.submission.typing.primary}") #{auth.submission.typing.primary} 
+				
+					div(class="Type TypeDex" class="#{auth.submission.typing.secondary}") #{auth.submission.typing.secondary}
+		ul Abilities: 
+			li "#{auth.submission.abilities.primary}"
+				

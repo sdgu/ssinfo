@@ -65,7 +65,23 @@ router.get('/', function(req, res, next) {
 
 var err;
 
+router.get("/dex", function(req, res)
+{
+	console.log("rendering dex");
+	var collection = mongoose.model("ocapmon", ocapmonSchema, "ocap");
 
+	collection.find({}, "submission").sort({"submission.name" : "ascending"}).exec(
+		function(e, docs)
+		{
+			console.log(docs);
+			res.render("dex", 
+				{
+					title: "Dex",
+					tests: docs
+				});
+		});
+
+});
 
 router.get("/ocap", function(req, res)
 {

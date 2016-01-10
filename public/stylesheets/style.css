@@ -62,11 +62,29 @@ table td:last-child
 	visibility: hidden;
 }
 
+.none
+{
+	visibility: hidden;
+}
 
 .Type
 {
 	color: white;
 	text-shadow: 1px 1px 1px #000;
+	width: 4em;
+	height: 1.65em;
+
+}
+
+.TypeDex
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #000;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-right: 2px;
 }
 
 .Bug

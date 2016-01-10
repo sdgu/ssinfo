@@ -127,6 +127,9 @@ block content
 
 	h1 OCAP
 	p Welcome to a nonsuck CAP
+	p Don't refresh this page.
+	p 
+		a(href="dex") Dex
 	p This is a list of the usernames of the last 5 submissions. If your name appears, it means your submission succeded.
 	ul
 		//- each auth, i in ocap.reverse()
@@ -139,6 +142,10 @@ block content
 	p The pin is not encrypted, so use something insecure (ie not your real pin/pass) like your birthday. This is here so probably only you can change your stuff. Since the info isn't sensitive I probably won't bother securing it. Currently the pin is tied to the name of your Pokemon.
 
 	p Movepool will eventually save as an array.
+
+	p When you submit, you can leave some fields blank and fill them in later.
+
+
 
 	
 	table
@@ -161,7 +168,7 @@ block content
 						p Mon Name
 						input#inputName(type="text" placeholder="name" name="name")
 
-						p Description
+						p Description (What is this mon's role etc.)
 						textarea#description(name="desc" rows="10" cols="30")
 
 						p Primay Typing
@@ -187,7 +194,7 @@ block content
 							
 						p Secondary Typing
 						select#sectypingin(name="sectypingin")
-							option.Type#blank2.blankTyping(value = "" name="blanktyping") None
+							option.Type#blank2.blankTyping(value = "none" name="blanktyping") None
 							option.Type#Normal2.Normal(value="Normal" name="Normal2") Normal
 							option.Type#Fire2.Fire(value="Fire" name="Fire2") Fire
 							option.Type#Water2.Water(value="Water" name="Water2") Water
@@ -281,7 +288,7 @@ block content
 
 						p Secondary Typing
 						select#upsectyping(name="upsectyping")
-							option.Type#upblank2.blankTyping(value = "" name="upblanktyping") None
+							option.Type#upblank2.blankTyping(value = "none" name="upblanktyping") None
 							option.Type#upNormal2.Normal(value="Normal" name="upNormal2") Normal
 							option.Type#upFire2.Fire(value="Fire" name="upFire2") Fire
 							option.Type#upWater2.Water(value="Water" name="upWater2") Water
