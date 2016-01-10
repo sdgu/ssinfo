@@ -6,9 +6,11 @@ block content
 
 	p this is the dex
 
+	p sorting options here or something using post
+
 	ul
 	each auth, i in tests
-		li= i + ": " + auth.submission.name
+		li= i+1 + ": " + auth.submission.name
 		ul
 			li Description: #{auth.submission.description}
 			li Typing: 
@@ -72,5 +74,9 @@ block content
 			li Movepool: 
 				ul
 					li #{auth.submission.movepool}
+		ul
+			li Flavor:
+				ul
+					li #{auth.submission.flavor}
 
 				
