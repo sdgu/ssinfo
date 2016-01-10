@@ -267,6 +267,7 @@ router.post("/updatepoke", function(req, res)
 
 	collection.find({"submission.name" : fetchedMonName},{}, function(e, docs)
 	{
+		console.log(docs[0].author.pin);
 		if (docs[0].author.pin == upin)
 		{
 			console.log("the pin works");
@@ -398,6 +399,7 @@ router.post("/updatepoke", function(req, res)
 		{
 			console.log("pin doesn't work");
 			err = "pin doesn't work";
+
 		}
 });
 

@@ -131,17 +131,17 @@ block content
 	p 
 		a(href="dex") Dex
 	p This is a list of the usernames of the last 5 submissions. If your name appears, it means your submission succeded.
-	ul
+	ul.userlist
 		//- each auth, i in ocap.reverse()
 		//-  	li
 		//-  		p= auth.author.username
 		- for (var i = last5users.length-5; i < last5users.length; i++)
 			li
 				p= i + ": " + last5users[i].author.username
-				
-	p The pin is not encrypted, so use something insecure (ie not your real pin/pass) like your birthday. This is here so probably only you can change your stuff. Since the info isn't sensitive I probably won't bother securing it. Currently the pin is tied to the name of your Pokemon.
+		
 
-	p Movepool will eventually save as an array.
+	p Note: the pin can be left blank.			
+	p It is not encrypted, so if you make one, use something insecure (ie not your real pin/pass) like your birthday.
 
 	p When you submit, you can leave some fields blank and fill them in later.
 
@@ -256,8 +256,8 @@ block content
 						p Username
 						input#inputUserNameUpdate(type="text", placeholder="Your username", name="usernameupdate")
 
-						p Enter Pin
-						input#inputPinUpdate(type="text", placeholder="Your pin (not secure)", name="pinupdate")
+						p Verify Pin
+						input#inputPinUpdate(type="text", placeholder="Verify Pin", name="pinupdate")
 
 						p Updated Name
 						input#upName(type="text" placeholder="update name" name="upname")

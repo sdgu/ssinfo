@@ -12,7 +12,10 @@ var mongo = require("mongodb");
 var mongoose = require("mongoose");
 //var db = "mongodb://localhost:27017/ssinfo";
 //var db = 
-mongoose.connect("mongodb://localhost:27017/ssinfo");
+var herokudb = "mongodb://sdgu:rl5009014@ds039115.mongolab.com:39115/heroku_45t7b97b";
+
+//mongoose.connect("mongodb://localhost:27017/ssinfo");
+mongoose.connect(herokudb);
 var db = mongoose.connection;
 
 var routes = require('./routes/index');

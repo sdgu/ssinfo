@@ -1,6 +1,6 @@
 {
   "name": "ssinfo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -17,5 +17,18 @@
     "monk": "^1.0.1",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "description": "pin is not encrypted, meant as a soft measure so only you can edit your entries\r weak captcha, just checking the input text against predetermined text\r if there's an error, the form is repopulated by remembering everything in it and using js innerHTML / value to put the entries back in--probably not the way to do it",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdgu/ssinfo.git"
+  },
+  "author": "SGu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdgu/ssinfo/issues"
+  },
+  "homepage": "https://github.com/sdgu/ssinfo#readme"
 }
