@@ -7,8 +7,11 @@ body
 {
   font: 14px;
   font-family: "Ubuntu";
+}
 
-
+li
+{
+	margin-left: 10px;
 }
 
 a 
@@ -32,26 +35,26 @@ a
 }
 
 
-table
+.subform
 {
 	border: none;
 	border-collapse: collapse;
 	margin-bottom: 100px;
 }
 
-table td
+.subform td
 {
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	padding: 0px 20px 0px 20px;
 }
 
-table td:first-child 
+.subform td:first-child 
 {
 	border-left: none;
 }
 
-table td:last-child 
+.subform td:last-child 
 {
 	border-right: none;
 }
@@ -67,6 +70,30 @@ table td:last-child
 	visibility: hidden;
 }
 
+.hide
+{
+	visibility: collapse;
+}
+.thestat
+{
+	text-align: right;
+	margin-right: 10px;
+}
+
+.thenum
+{
+	color: white;
+	text-shadow: 1px 1px 1px #000;
+	background: green;
+	padding-left: 10px;	
+}
+
+li
+{
+	padding-top: 5px;
+}
+
+
 .Type
 {
 	color: white;
@@ -76,10 +103,12 @@ table td:last-child
 
 }
 
+
+
 .TypeDex
 {
 	display: inline-flex;
-	align-items: center;
+
 	justify-content: center;
 	border: 1px solid #000;
 	border-radius: 5px;

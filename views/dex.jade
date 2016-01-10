@@ -10,13 +10,67 @@ block content
 	each auth, i in tests
 		li= i + ": " + auth.submission.name
 		ul
-			li #{auth.submission.description}
+			li Description: #{auth.submission.description}
 			li Typing: 
 			ul
 				li
 					div(class="Type TypeDex" class="#{auth.submission.typing.primary}") #{auth.submission.typing.primary} 
 				
 					div(class="Type TypeDex" class="#{auth.submission.typing.secondary}") #{auth.submission.typing.secondary}
-		ul Abilities: 
-			li "#{auth.submission.abilities.primary}"
+		ul 
+			li Abilities: 
+			ul
+				li #{auth.submission.abilities.primary}
+				li #{auth.submission.abilities.secondary}
+				li #{auth.submission.abilities.tertiary}
+		ul
+			li Stats:
+			ul
+				//- li HP: #{auth.submission.stats.HP}
+				//- li Attack: #{auth.submission.stats.Atk}
+				//- li Defense: #{auth.submission.stats.Def}
+				//- li Special Attack: #{auth.submission.stats.SpA}
+				//- li Special Defense: #{auth.submission.stats.SpD}
+				//- li Speed: #{auth.submission.stats.Spe}
+				table.stats
+					tr
+						td.thestat HP:
+						td.thenum(width="#{auth.submission.stats.HP}px") #{auth.submission.stats.HP}
+					tr.hide
+						td Special Defense:
+				table.stats
+					tr
+						td.thestat Attack:
+						td.thenum(width="#{auth.submission.stats.Atk}px") #{auth.submission.stats.Atk}
+					tr.hide
+						td Special Defense:
+				table.stats
+					tr
+						td.thestat Defense: 
+						td.thenum(width="#{auth.submission.stats.Def}") #{auth.submission.stats.Def}
+					tr.hide
+						td Special Defense:
+				table.stats
+					tr
+						td.thestat Special Attack:
+						td.thenum(width="#{auth.submission.stats.SpA}") #{auth.submission.stats.SpA}
+					tr.hide
+						td Special Defense:
+				table.stats
+					tr
+						td.thestat Special Defense:
+						td.thenum(width="#{auth.submission.stats.SpD}") #{auth.submission.stats.SpD}
+					tr.hide
+						td Special Defense:
+				table.stats
+					tr
+						td.thestat Speed:
+						td.thenum(width="#{auth.submission.stats.Spe}") #{auth.submission.stats.Spe}
+					tr.hide
+						td Special Defense:
+		ul
+			li Movepool: 
+				ul
+					li #{auth.submission.movepool}
+
 				
